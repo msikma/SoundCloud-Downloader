@@ -1,4 +1,5 @@
 require "scdownloader/version"
+require "unirest"
 
 module Scdownloader
   class Song
