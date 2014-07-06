@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'scdownloader'
+
+song = Scdownloader::Song.new
+song.test
