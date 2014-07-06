@@ -4,6 +4,11 @@ Scdownloader is a tool used to download songs from SoundCloud to your computer a
 
 ## Installation
 
+<<<<<<< HEAD
+=======
+Or install it yourself as:
+
+>>>>>>> ad972e47e0efa89fdb0dd2d36ca981f7831c8f90
     $ gem install scdownloader
 
 ## Usage
