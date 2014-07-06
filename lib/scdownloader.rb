@@ -1,6 +1,8 @@
 require "scdownloader/version"
 require "unirest"
 
+$client_id = "2de556d4242efcdb9efb51480a1e59e9"
+
 module Scdownloader
   class Song
       attr_reader :id, :stream_url, :name, :url
@@ -30,7 +32,7 @@ module Scdownloader
       private
 
       def get_stream_url
-          response =Unirest.get "https://api.sndcdn.com/i1/tracks/#{@id}/streams", headers: {}, parameters: { :client_id => $client_id }
+          response = Unirest.get "https://api.sndcdn.com/i1/tracks/#{@id}/streams", headers: {}, parameters: { :client_id => $client_id }
           response.body["http_mp3_128_url"]
       end
 
