@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'scdownloader'
-require 'unirest'
 
 song = Scdownloader::Song.new(ARGV[0])
 song.download
