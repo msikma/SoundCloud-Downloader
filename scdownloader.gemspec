@@ -9,7 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Mico Piira"]
   spec.email         = ["mico.piira@yahoo.com"]
   spec.summary       = %q{SoundCloud downloader}
-  spec.description   = %q{Downloads songs from SoundCloud}
+  spec.description   = %q{Downloads songs from SoundCloud to your 
+computer as MP3 files}
   spec.homepage      = "https://gitlab.com/u/mixu"
   spec.license       = "MIT"
 
