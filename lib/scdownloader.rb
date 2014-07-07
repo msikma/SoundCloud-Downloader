@@ -24,7 +24,8 @@ module Scdownloader
             total_length = response['Content-Length'].to_f
             response.read_body do |segment|
               downloaded += (segment.length).to_f
-              puts (downloaded/total_length).to_s
+              print '\r'
+              print (((downloaded/total_length)*100).to_i).to_s
               file.write(segment)
             end
           end
