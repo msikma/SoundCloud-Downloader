@@ -2,5 +2,5 @@
 
 require 'scdownloader'
 
-song = Scdownloader::Song.new(ARGV[0])
+song = Song.new(ARGV[0])
 song.download
