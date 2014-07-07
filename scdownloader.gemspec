@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["mico.piira@yahoo.com"]
   spec.summary       = %q{SoundCloud downloader}
   spec.description   = %q{Downloads songs from SoundCloud}
-  spec.homepage      = ""
+  spec.homepage      = "https://gitlab.com/u/mixu"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -19,7 +19,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "unirest", '~> 1.1'
-  spec.add_runtime_dependency "json"
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
 end
