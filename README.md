@@ -1,20 +1,20 @@
-# Scdownloader
+# SoundcloudDownloader
 
-Scdownloader is a tool used to download songs from SoundCloud to your computer as MP3.
+SoundcloudDownloader is a tool used to download songs from SoundCloud to your computer as MP3.
 
 ## Installation
 
-    $ gem install scdownloader
+    $ gem install soundcloud_downloader
 
 ## Usage
 
 Stand alone:
 
-    $ scdownloader URL
+    $ soundcloud_downloader URL
 
 In your own Ruby applications:
 
-    require 'scdownloader'
+    require 'soundcloud_downloader'
 
     song = Song.new("https://soundcloud.com/example/example-song-name")
     song.id # => 123456

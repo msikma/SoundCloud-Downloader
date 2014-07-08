@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'scdownloader'
+require 'soundcloud_downloader'
 
 song = Song.new(ARGV[0])
 song.download

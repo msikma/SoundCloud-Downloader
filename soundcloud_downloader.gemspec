@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'scdownloader/version'
+require 'soundcloud_downloader/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "scdownloader"
-  spec.version       = Scdownloader::VERSION
+  spec.name          = "soundcloud_downloader"
+  spec.version       = SoundcloudDownloader::VERSION
   spec.authors       = ["Mico Piira"]
   spec.email         = ["mico.piira@yahoo.com"]
   spec.summary       = %q{SoundCloud downloader}
