@@ -19,8 +19,8 @@ computer as MP3 files}
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "excon"
-  spec.add_runtime_dependency "json"
+  spec.add_runtime_dependency 'excon', '~> 0.38.0'
+  spec.add_runtime_dependency 'json', '~> 1.8.1'
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
 end
