@@ -1,8 +1,11 @@
-require "unirest"
+require "excon"
+require "json"
+require "uri"
 
 class Song
   attr_reader :id, :stream_url, :name, :url
   def initialize(url)
+    raise ArgumentError, "Invalid url" if url !~ URI::regexp
     @url = url
     @name = url.split("/").last
     @id ||= get_id
@@ -10,42 +13,35 @@ class Song
   end
 
   def download (file = "#{@name}.mp3")
-    uri = URI(@stream_url)
-    Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
-      begin
-        file = open("#{file}", 'wb')
-        http.request_get uri.request_uri do |response|
-          downloaded = 0
-          total_length = response['Content-Length'].to_f
-          response.read_body do |segment|
-            downloaded += (segment.length).to_f
-            print "\rDownloaded " + (((downloaded/total_length)*100).to_i).to_s + "%"
-            STDOUT.flush
-            file.write(segment)
-          end
-        end
-      ensure
-        file.close
-      end
+    streamer = lambda do |chunk, remaining_bytes, total_bytes|
+      file.write(chunk)
+      remaining = ((remaining_bytes.to_f / total_bytes) * 100).to_i
+      STDOUT.flush
+      print "\rRemaining: #{remaining}%"
     end
+    file = open("#{file}", 'wb')
+    Excon.get(@stream_url, :response_block => streamer)
+    puts "\r\nComplete!"
+    file.close
   end
 
   private
 
   def get_stream_url
-    response = Unirest.get "https://api.sndcdn.com/i1/tracks/#{@id}/streams", headers: {}, parameters: { :client_id => $client_id }
-    response.body["http_mp3_128_url"]
+    response = Excon.get("https://api.sndcdn.com/i1/tracks/#{@id}/streams", :query => { :client_id => $client_id })
+    JSON.parse(response.body)["http_mp3_128_url"]
   end
 
   def get_id
-    response = Unirest.get "https://api.sndcdn.com/resolve?_status_code_map%5B302%5D=200", 
-    headers: { "Accept" => "application/json" }, 
-    parameters: {
+    response = Excon.get("https://api.sndcdn.com/resolve?_status_code_map%5B302%5D=200", 
+    :headers => { "Accept" => "application/json" }, 
+    :query => {
       :url => @url,
       :_status_format => 'json',
       :client_id => $client_id
-    }
-    uri = URI.parse(response.body["location"]).path.to_s
+    })
+    location = JSON.parse(response.body)["location"]
+    uri = URI.parse(location).path.to_s
     uri.split('/').last
   end
 end
