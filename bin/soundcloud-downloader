@@ -1,6 +1,28 @@
 #!/usr/bin/env ruby
 
 require 'soundcloud_downloader'
+require 'optparse'
 
-song = Song.new(ARGV[0])
-song.download
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: soundcloud-downloader <URL> [OPTIONS]"
+
+  opts.on("-o", "--out [filename]",
+          "Filename for the MP3, optional") do |t|
+    options[:filename] = t
+  end
+  opts.on("-f", "--folder [folder]",
+          "Folder to save the MP3 to, optional") do |t|
+    options[:folder] = t
+  end
+  opts.on_tail("-v", "--version", "Show version") do
+     puts "Version: #{SoundcloudDownloader::VERSION}"
+     exit
+   end
+
+end.parse!
+
+url = ARGV[0]
+
+song = Song.new(url)
+song.download(options[:filename], options[:folder])

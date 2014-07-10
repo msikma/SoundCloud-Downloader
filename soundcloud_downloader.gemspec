@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{SoundCloud downloader}
   spec.description   = %q{Downloads songs from SoundCloud to your 
 computer as MP3 files}
-  spec.homepage      = "https://gitlab.com/u/mixu"
+  spec.homepage      = "https://gitlab.com/mixu/soundcloud-downloader"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

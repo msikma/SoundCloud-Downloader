@@ -12,16 +12,20 @@ class Song
     @stream_url ||= get_stream_url
   end
 
-  def download (file = "#{@name}.mp3")
+  def download (file = "#{@name}.mp3", folder = "./")
+    raise ArgumentError, "Invalid folder" if not File.directory?(folder)
+    raise ArgumentError, "Cannot write to this folder" if not File.writable?(folder)
+    raise ArgumentError, "File must have .mp3 extension" if File.extname(file) != ".mp3"
     streamer = lambda do |chunk, remaining_bytes, total_bytes|
       file.write(chunk)
       remaining = ((remaining_bytes.to_f / total_bytes) * 100).to_i
       STDOUT.flush
       print "\rRemaining: #{remaining}%"
     end
-    file = open("#{file}", 'wb')
+    path = File.join(folder,File.basename(file))
+    file = open(path, 'wb')
     Excon.get(@stream_url, :response_block => streamer)
-    puts "\r\nComplete!"
+    puts "\r\nSaved to #{File.realpath(path)}!"
     file.close
   end
 
