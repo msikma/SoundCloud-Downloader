@@ -11,8 +11,8 @@ SoundcloudDownloader is a tool used to download songs from SoundCloud to your co
 CLI:
 
     $  soundcloud-downloader <URL> [OPTIONS]
-          -o, --out [filename]             Filename for the MP3, optional
-          -f, --folder [folder]            Folder to save the MP3 to, optional
+          -o, --out [filename]             Filename for the MP3, optional (Default: current directory)
+          -f, --folder [folder]            Folder to save the MP3 to, optional (Default: Will parse it from the URL)
           -v, --version                    Show version
 
 In your own Ruby applications:
@@ -24,4 +24,4 @@ In your own Ruby applications:
     song.stream_url # => https://soundcloud.hs.llnwd.net/Example.128.mp3?AWSAccessKeyId=Example&Expires=Example&Signature=Example%3D&e=Example&h=Example
     song.name # => example-song-name
     song.url # => https://soundcloud.com/example/example-song-name
-    song.download # This will download the song as mp3
+    song.download(file, folder) # This will download the song as mp3 (File and folder arguments are optional)
