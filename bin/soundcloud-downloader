@@ -7,13 +7,9 @@ options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: soundcloud-downloader <URL> [OPTIONS]"
 
-  opts.on("-o", "--out [filename]",
+  opts.on("-O", "--output-file [filename]",
           "Filename for the MP3, optional (Default: current directory)") do |t|
     options[:filename] = t
-  end
-  opts.on("-f", "--folder [folder]",
-          "Folder to save the MP3 to, optional (Default: Will parse it from the URL)") do |t|
-    options[:folder] = t
   end
   opts.on_tail("-v", "--version", "Show version") do
      puts "Version: #{SoundcloudDownloader::VERSION}"
@@ -25,4 +21,5 @@ end.parse!
 url = ARGV[0]
 
 song = Song.new(url)
-song.download(options[:filename], options[:folder])
+song.download()
+#song.download(options[:filename], options[:folder])

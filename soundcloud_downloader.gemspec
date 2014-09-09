@@ -21,6 +21,7 @@ computer as MP3 files}
 
   spec.add_runtime_dependency 'excon', '~> 0.38.0'
   spec.add_runtime_dependency 'json', '~> 1.8.1'
+  spec.add_runtime_dependency 'ruby-mp3info', '~> 0.8.4'
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
 end
