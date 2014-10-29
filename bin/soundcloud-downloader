@@ -21,5 +21,7 @@ end.parse!
 url = ARGV[0]
 
 song = Song.new(url)
-song.download()
-#song.download(options[:filename], options[:folder])
+dl_options = []
+dl_options << options[:filename] unless options[:filename].nil?
+dl_options << options[:folder] unless options[:folder].nil?
+song.send('download', *dl_options)
